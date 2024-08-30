@@ -62,11 +62,9 @@ public class Main {
 
 
     public static void main(String[] args) {
-        // Inicializa la API de Telegram Bots
         TelegramBotsApi botsApi = null;
         try {
             botsApi = new TelegramBotsApi(DefaultBotSession.class);
-            // Registra tu bot
             botsApi.registerBot(new botCuestionario());
             System.out.println("Bot registrado y en ejecución...");
         } catch (TelegramApiException e) {

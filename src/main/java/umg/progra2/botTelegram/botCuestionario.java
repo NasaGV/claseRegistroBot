@@ -56,7 +56,7 @@ public class botCuestionario extends TelegramLongPollingBot {
                 String userLastName = update.getMessage().getFrom().getLastName();
                 String nickName = update.getMessage().getFrom().getUserName();
 
-                // Verificar si el usuario esta registrado
+                // Verifica si el usuario esta registrado en el sistema
                 String state = estadoConversacion.getOrDefault(chatId, "");
                 usuarioConectado = userService.getUserByTelegramId(chatId);
 
@@ -71,7 +71,7 @@ public class botCuestionario extends TelegramLongPollingBot {
                         return;
                     }
                 } else {
-                    // Usuario ya registrado, manejo de cuestionario
+                    // si el usuario ya esta registrado manejo de cuestionario
                     if (messageText.equals("/menu")) {
                         sendMenu(chatId);
                         return;
@@ -90,10 +90,9 @@ public class botCuestionario extends TelegramLongPollingBot {
                 inicioCuestionario(chatId, callbackData);
             }
         } catch (Exception e) {
-            // Manejo de errores
             long chatId = update.getMessage().getChatId();
             sendText(chatId, "Ocurrió un error al procesar tu mensaje 😵‍💫. Por favor intenta nuevamente.");
-            e.printStackTrace();  // Loguear la excepción
+            e.printStackTrace();
         }
     }
 
@@ -105,7 +104,7 @@ public class botCuestionario extends TelegramLongPollingBot {
         InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
 
-        // Crea los botones del menú
+        // para crear los botones del menu
         rows.add(crearFilaBoton("Sección 1", "SECTION_1"));
         rows.add(crearFilaBoton("Sección 2", "SECTION_2"));
         rows.add(crearFilaBoton("Sección 3", "SECTION_3"));
